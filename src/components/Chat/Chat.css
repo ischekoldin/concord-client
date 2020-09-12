@@ -1,0 +1,54 @@
+.outerContainer {
+    background-color: #36393F;
+    height: 100vh;
+    justify-content: center;
+}
+
+.chatWindowWrapper {
+    position:relative;
+    top:4vh;
+    display:flex;
+    flex-direction: row;
+    align-items: stretch;
+
+}
+
+
+.sidePanelWrapper {
+    height: 95vh;
+    flex: 0.7 0.7;
+    display:flex;
+    flex-direction:column;
+    background-color: #2F3136;
+}
+
+.sidePanel {
+    margin-left: 1vw;
+    margin-top: 1.4vw;
+    background-color: #2F3136;
+    color: #56CBFF;
+    flex: 1;
+}
+
+.chatBoxWrapper {
+    overflow: auto;
+    flex: 4 4;
+    display:flex;
+    flex-direction:column;
+    align-items: stretch;
+    height: 95vh;
+
+}
+
+.chatBox {
+    background-color: #36393F;
+    height: 93vh;
+    padding-top: 2%;
+    flex: 4;
+    overflow: auto;
+}
+
+.inputBoxWrapper {
+
+}
+

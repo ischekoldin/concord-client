@@ -1,0 +1,58 @@
+.input {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.input textarea {
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+    padding: 0.9em 3.6em 0.9em 1.3em;
+    border-radius: 9px;
+    background-color: #40444B;
+    caret-color: white;
+    color: white;
+    border: none;
+    margin-left: 1.3vw;
+    margin-bottom: 2vh;
+    resize: none;
+    height: auto;
+    max-height: 200px;
+
+}
+
+.input textarea:focus {
+    outline: none;
+}
+
+.emojiPickerBtn {
+    filter: grayscale(100%);
+    border-radius: 3px 3px 3px 3px;
+    width: 30px;
+    height: 30px;
+    bottom: 11px;
+    right: 2em;
+    font-size: 1.5em;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    color: #40444B;
+    position: relative;
+    background: transparent;
+
+}
+
+.emojiPickerBtn:hover {
+    animation-name: emojiPickerBtnPulse;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes emojiPickerBtnPulse {
+    100% {
+        transform: scale(1.2);
+        filter: grayscale(0%);
+    }
+}

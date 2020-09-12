@@ -1,0 +1,53 @@
+
+.sidePanelUser {
+    display: flex;
+    flex-direction: row;
+}
+
+.typingIndicatorBlock {
+    align-items: center;
+    display: flex;
+    height: 17px;
+}
+
+.typingIndicatorContainer  {
+    padding-left: 5%;
+}
+
+.typingIndicatorContainer .typingIndicatorDot {
+    background-color: #90949c;
+}
+
+.typingIndicatorDot {
+    animation: mercuryTypingAnimation 1.5s infinite ease-in-out;
+    border-radius: 2px;
+    display: inline-block;
+    height: 4px;
+    margin-right: 2px;
+    width: 4px;
+}
+
+@keyframes mercuryTypingAnimation{
+    0%{
+        transform:translateY(0px);
+        background-color: #b5b9c1;
+    }
+    28%{
+        transform:translateY(-5px);
+        background-color: #f3f7ff;
+    }
+    44%{
+        transform:translateY(0px);
+        background-color: #b5b9c1;
+    }
+}
+
+.typingIndicatorDot:nth-child(1){
+    animation-delay:200ms;
+}
+.typingIndicatorDot:nth-child(2){
+    animation-delay:300ms;
+}
+.typingIndicatorDot:nth-child(3){
+    animation-delay:400ms;
+}

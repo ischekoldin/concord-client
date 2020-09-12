@@ -1,0 +1,7 @@
+.emojiPicker {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}

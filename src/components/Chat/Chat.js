@@ -23,9 +23,13 @@ const Chat = ({location}) => {
     const [users, setUsers] = useState([]);
     const [messageSubmitMode, setMessageSubmitMode] = useState('send');
     const [editedMessageId, setEditedMessageId] = useState(null);
-    const ENDPOINT = 'localhost:5000';
 
-
+    let ENDPOINT;
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        ENDPOINT = 'http://localhost:5000';
+    } else {
+        ENDPOINT = 'https://concord-client.herokuapp.com';
+    }
 
 
     useEffect(() => {

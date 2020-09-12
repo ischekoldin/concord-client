@@ -28,7 +28,7 @@ const Chat = ({location}) => {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
         ENDPOINT = 'http://localhost:5000';
     } else {
-        ENDPOINT = 'https://concord-client.herokuapp.com';
+        ENDPOINT = 'https://concord-server.herokuapp.com';
     }
 
 
@@ -41,9 +41,6 @@ const Chat = ({location}) => {
         setRoom(room);
 
         socket.emit('userJoin', {name, room}, () => {
-
-
-
 
         });
 

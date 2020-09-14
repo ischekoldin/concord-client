@@ -1,9 +1,9 @@
 import './Chat.css';
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import queryString from 'query-string';
 import io from 'socket.io-client';
 
-//let's get our components
+
 import InfoBar from "../InfoBar/InfoBar";
 import Messages from "../Messages/Messages";
 import Input from "../Input/Input";
@@ -31,7 +31,6 @@ const Chat = ({location}) => {
         ENDPOINT = 'https://concord-server.herokuapp.com';
     }
 
-
     useEffect(() => {
         const {name, room} = queryString.parse(location.search);
 
@@ -49,7 +48,7 @@ const Chat = ({location}) => {
         });
 
 
-        //when Chat component unmounts, we emit 'disconnect'
+        //when Chat component unmounts, we emit backend to the 'disconnect'
         return () => {
 
             socket.emit('disconnect');
@@ -60,6 +59,7 @@ const Chat = ({location}) => {
 
 
     useEffect(() => {
+
         socket.on('message', message => {
             setMessages(messages =>[...messages, message]);
         });
@@ -67,12 +67,11 @@ const Chat = ({location}) => {
         socket.on('updateMessages', messages => {
             setMessages(messages);
         });
+
     },[]);
 
 
-
-    const restoreMessages = () => {
-
+    const restoreMessages = useCallback( () => {
         const oldMessages = localStorage.getItem("messages");
 
         // if there're no old messages, there's no need to restore them
@@ -98,19 +97,12 @@ const Chat = ({location}) => {
                     parsedOldMessages.pop();
                     setMessages(parsedOldMessages);
                 }
-
             }
-
         }
-
-    };
-
+    }, [location.search]);
 
 
-
-
-    const storeMessages = () => {
-
+    const storeMessages = useCallback( () => {
         // we only use this storage for the last user,
         // so we don't need to keep the old data
         localStorage.removeItem("messages");
@@ -122,7 +114,8 @@ const Chat = ({location}) => {
         let messagesToStore_String = JSON.stringify(messagesToStore);
 
         localStorage.setItem("messages", messagesToStore_String);
-    };
+    }, [messages, name, room]);
+
 
     // whenever the messages change we need to store them in case of oopsies
     // as a user logs in, we always have the greeting message from admin
@@ -133,7 +126,7 @@ const Chat = ({location}) => {
             restoreMessages();
         }
 
-    },[messages]);
+    },[messages, storeMessages, restoreMessages]);
 
 
     //function for sending new messages and editing old ones
